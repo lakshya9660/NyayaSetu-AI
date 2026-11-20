@@ -31,3 +31,4 @@ All notable changes to the NyayaSetu AI project between Milestone 1 and Mileston
 - Fixed prompt injection vulnerability by enforcing `<retrieved_documents>` delimiter boundaries.
 - Fixed washed-out contrast on action buttons and subheadings.
 - Fixed language dropdown mismatch by implementing automatic script detection.
+

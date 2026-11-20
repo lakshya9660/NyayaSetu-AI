@@ -19,7 +19,7 @@
   5. **S24CSEU2660 — Niharika .**
 * **The Three Essential Links:**
   * **Prototype Link:** https://demonstration-walter-sale-cooling.trycloudflare.com (Live Public HTTPS Prototype)
-  * **GitHub Repository Link:** [Paste your GitHub Repository URL here, e.g. https://github.com/LakshyaPratapSingh/NyayaSetu-AI]
+  * **GitHub Repository Link:** https://github.com/lakshya9660/NyayaSetu-AI (Public Repository)
   * **Reel Link & Exact Length:** [Paste your Google Drive / Unlisted YouTube Link here] — **Exact Length: 118 seconds** (within 90–150s guideline)
 
 ---

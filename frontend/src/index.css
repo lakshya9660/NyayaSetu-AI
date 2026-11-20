@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: #CF6D80;
+    color: #ffffff;
+  }
+}
+
+/* Custom crisp scrollbars in Rose Gold tint */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8CCD1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CF9CA5;
+}
+
+/* Floating & Interactive Keyframes */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glowBorder {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(183, 82, 101, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(183, 82, 101, 0.35);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+.animate-message-in {
+  animation: messageIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.glow-rosegold {
+  animation: glowBorder 3s infinite alternate;
+}
+
+.floating-shadow {
+  box-shadow: 0 10px 25px -5px rgba(183, 82, 101, 0.08), 0 8px 10px -6px rgba(183, 82, 101, 0.04);
+}
+
+.floating-shadow-lg {
+  box-shadow: 0 20px 35px -8px rgba(183, 82, 101, 0.12), 0 10px 15px -7px rgba(183, 82, 101, 0.06);
+}

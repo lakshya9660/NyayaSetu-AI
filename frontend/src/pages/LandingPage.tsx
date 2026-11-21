@@ -36,7 +36,10 @@ export const LandingPage: React.FC = () => {
           {/* Main Hero Headings */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[1.15]">
             {t('heroTitle1')}<br />
-            <span className="text-[#8C2839] font-black inline-block mt-1">
+            <span
+              className="font-black inline-block mt-1"
+              style={{ color: '#8C2839' }}
+            >
               {t('heroTitle2')}
             </span>
           </h1>
@@ -50,7 +53,8 @@ export const LandingPage: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               to="/chat"
-              className="px-7 py-3.5 rounded-2xl bg-[#8C2839] hover:bg-[#6B1B29] text-white font-black text-base shadow-lg shadow-[#8C2839]/35 flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5 active:scale-95 border border-[#B74B5B]/40"
+              style={{ backgroundColor: '#8C2839', color: '#ffffff' }}
+              className="px-7 py-3.5 rounded-2xl hover:bg-[#6B1B29] font-black text-base shadow-lg shadow-[#8C2839]/35 flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5 active:scale-95 border border-[#B74B5B]/40"
             >
               <span className="text-white font-black">{t('askQuestionBtn')}</span>
               <ArrowRight className="w-5 h-5 text-white stroke-[2.5]" />

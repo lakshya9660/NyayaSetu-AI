@@ -62,15 +62,36 @@ app.include_router(sources_router, prefix="/api/v1")
 app.include_router(legal_aid_router, prefix="/api/v1")
 app.include_router(admin_router, prefix="/api/v1")
 
-@app.get("/")
-def read_root():
-    return {
-        "message": "Welcome to NyayaSetu AI — Community Legal Information Platform API",
-        "version": "1.0.0",
-        "docs": "/docs",
-        "health": "/api/v1/health",
-        "disclaimer": "This service provides public legal information only, not personalized legal advice."
-    }
+# Mount compiled frontend if available (Full-Stack single deployment)
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
+
+if os.path.exists(frontend_dist):
+    assets_dir = os.path.join(frontend_dist, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        if full_path.startswith("api/") or full_path == "api" or full_path.startswith("docs") or full_path.startswith("redoc") or full_path == "openapi.json":
+            return JSONResponse(status_code=404, content={"detail": "API endpoint not found"})
+        file_path = os.path.join(frontend_dist, full_path)
+        if os.path.isfile(file_path):
+            return FileResponse(file_path)
+        return FileResponse(os.path.join(frontend_dist, "index.html"))
+else:
+    @app.get("/")
+    def read_root():
+        return {
+            "message": "Welcome to NyayaSetu AI — Community Legal Information Platform API",
+            "version": "1.0.0",
+            "docs": "/docs",
+            "health": "/api/v1/health",
+            "disclaimer": "This service provides public legal information only, not personalized legal advice."
+        }
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):

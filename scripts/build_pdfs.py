@@ -130,7 +130,7 @@ def create_milestone_2_pdf():
         [Paragraph("Project Title", st['cell']), Paragraph("NyayaSetu AI — Community Legal Information & DLSA Navigation Platform", st['cell'])],
         [Paragraph("Batch / Faculty", st['cell']), Paragraph("Batch: B01-B12 | Faculty: Dr. Sonal", st['cell'])],
         [Paragraph("Team Members", st['cell']), Paragraph("S24CSEU0063 - Lakshya Pratap Singh (Leader)<br/>S24CSEU0606 - Nishika Upadhyay<br/>S24CSEU0687 - Jhanvi Bhat<br/>S24CSEU0072 - Tanvi Agrawal<br/>S24CSEU2660 - Niharika .", st['cell'])],
-        [Paragraph("The 3 Essential Links", st['cell']), Paragraph("1. Prototype Link: https://demonstration-walter-sale-cooling.trycloudflare.com<br/>2. GitHub Repo: https://github.com/lakshya9660/NyayaSetu-AI<br/>3. Reel Link: Drive/YouTube (Unlisted) · Exact Length: 118 seconds", st['cell'])],
+        [Paragraph("The 3 Essential Links", st['cell']), Paragraph("1. Prototype Link: https://limit-tonight-chicken-convention.trycloudflare.com<br/>2. GitHub Repo: https://github.com/lakshya9660/NyayaSetu-AI<br/>3. Reel Link: Drive/YouTube (Unlisted) · Exact Length: 118 seconds", st['cell'])],
         [Paragraph("Core Counts (Exact)", st['cell']), Paragraph("Final Prompts: 2 | Test Inputs: 12 | Prompt Versions: 4 | Working Modules: 6", st['cell'])]
     ]
     t_cover = Table(cover_data, colWidths=[130, 410])

@@ -21,6 +21,7 @@ pinned: false
 * **Faculty:** Dr. Saurabh R Srivastava
 * **Live Prototype Link:** [https://nyasetu.netlify.app/chat](https://nyasetu.netlify.app/chat)
 * **GitHub Repository:** [https://github.com/lakshya9660/NyayaSetu-AI](https://github.com/lakshya9660/NyayaSetu-AI)
+* **Demo Video Reel:** [https://youtu.be/8yoIhosO_Ik?si=cI1yrRrrgcUDcPnS](https://youtu.be/8yoIhosO_Ik?si=cI1yrRrrgcUDcPnS)
 * **Team Members:**
   1. `S24CSEU0063` — Lakshya Pratap Singh (Team Leader)
   2. `S24CSEU0606` — Nishika Upadhyay

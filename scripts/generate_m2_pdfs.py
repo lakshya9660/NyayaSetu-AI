@@ -260,7 +260,14 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
         # Check code block fences
         if line.startswith('```'):
             if in_code_block:
-                code_text = "\n".join(code_lines)
+                import textwrap
+                wrapped_lines = []
+                for cl in code_lines:
+                    if len(cl) > 65:
+                        wrapped_lines.extend(textwrap.wrap(cl, width=65))
+                    else:
+                        wrapped_lines.append(cl)
+                code_text = "\n".join(wrapped_lines)
                 story.append(Spacer(1, 4))
                 p = Preformatted(code_text, styles['CodeSnippet'])
                 t = Table([[p]], colWidths=[504])
@@ -308,7 +315,7 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
                 if table_rows[0][0].lower().startswith('test'):
                     col_widths = [32, 130, 48, 140, 114, 40]
                 else:
-                    col_widths = [85, 75, 80, 134, 90, 40]
+                    col_widths = [72, 66, 72, 122, 122, 50]
             story.append(Spacer(1, 4))
             story.append(build_table(table_rows, col_widths, styles))
             story.append(Spacer(1, 4))
@@ -355,7 +362,7 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
         col_width = 504 / num_cols
         col_widths = [col_width] * num_cols
         if num_cols == 6:
-            col_widths = [85, 75, 80, 134, 90, 40]
+            col_widths = [72, 66, 72, 122, 122, 50]
         story.append(build_table(table_rows, col_widths, styles))
         
     doc.build(story, canvasmaker=NumberedCanvas)

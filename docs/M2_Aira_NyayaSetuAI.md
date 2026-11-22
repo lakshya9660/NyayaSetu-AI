@@ -20,13 +20,13 @@
 * **The Three Essential Links:**
   * **Prototype Link:** https://nyasetu.netlify.app/chat (Live Public HTTPS Prototype)
   * **GitHub Repository Link:** https://github.com/lakshya9660/NyayaSetu-AI (Public Repository)
-  * **Reel Link & Exact Length:** [Paste your Google Drive / Unlisted YouTube Link here] — **Exact Length: 120 seconds** (within 90–150s guideline)
+  * **Reel Link & Exact Length:** https://youtu.be/8yoIhosO_Ik?si=cI1yrRrrgcUDcPnS — **Exact Length: 120 seconds** (within 90–150s guideline)
 
 ---
 
 ## SECTION 2: PROMPT AND SOLUTION DESIGN
 
-### 2.1 Problem Description & Justification (Half to One Page)
+### 2.1 Problem Description & Justification
 * **What problem and for whom?** Over 70% of Indian citizens who require legal remedy or face legal disputes are unable to navigate statutory provisions due to extreme legalese, lack of literacy, and unawareness of statutory legal aid. Under Section 12 of the Legal Services Authorities Act, 1987, citizens from marginalized backgrounds—including all women, children, Scheduled Castes, Scheduled Tribes, disabled citizens, industrial workmen, and low-income individuals—are entitled to 100% free legal defense counsel and court fee waivers. However, official legal portals are fragmented, and citizens frequently resort to costly or speculative unauthorized representation.
 * **Input and Output:**
   * *Input:* Citizen's legal query in simple conversational English or everyday Devanagari Hindi (e.g. *"क्या धारा 12 के अंतर्गत महिलाओं को अदालत में मुफ्त कानूनी सहायता मिल सकती है?"*).
@@ -188,26 +188,26 @@ Instructions:
   * *Output:*
 ```json
 {
-  "answer": "हाँ, विधिक सेवा प्राधिकरण अधिनियम, 1987 (Legal Services Authorities Act, 1987) की धारा 12(c) के तहत महिलाओं और बच्चों को अदालत में पूर्णतः निःशुल्क कानूनी सहायता पाने का स्पष्ट वैधानिक अधिकार प्राप्त है...",
+  "answer": "हाँ, विधिक सेवा प्राधिकरण अधिनियम, 1987\nकी धारा 12(c) के तहत महिलाओं और बच्चों को अदालत में\nपूर्णतः निःशुल्क कानूनी सहायता पाने का स्पष्ट वैधानिक अधिकार है।",
   "language": "hi",
   "topic": "Women's Rights & Family Protection",
   "supported_points": [
-    "विधिक सेवा प्राधिकरण अधिनियम, 1987 की धारा 12(c) के अनुसार प्रत्येक महिला बिना किसी आय सीमा के निःशुल्क कानूनी सहायता की हकदार है।",
-    "धारा 13 के तहत कोर्ट फीस, सरकारी अधिवक्ता और अदालती प्रक्रिया का पूरा खर्च शासन वहन करता है।"
+    "विधिक सेवा प्राधिकरण अधिनियम, 1987 की धारा 12(c) के अनुसार\nप्रत्येक महिला बिना आय सीमा के निःशुल्क कानूनी सहायता की हकदार है।",
+    "धारा 13 के तहत कोर्ट फीस, सरकारी अधिवक्ता और\nअदालती प्रक्रिया का पूरा खर्च शासन वहन करता है।"
   ],
   "sources": [
     {
-      "document_title": "Legal Services Authorities Act, 1987 — Criteria for Free Legal Aid (Sections 12 & 13)",
+      "document_title": "Legal Services Authorities Act, 1987 (Sec 12-13)",
       "page": 1,
-      "section": "Section 12: Criteria for Giving Legal Services / धारा 12: मुफ्त कानूनी सहायता के मानदंड",
+      "section": "Section 12: Criteria for Giving Legal Services",
       "official_url": "https://nalsa.gov.in/legal-aid/"
     }
   ],
   "suggested_general_next_steps": [
-    "अपने जिले के जिला न्यायालय परिसर में स्थित DLSA फ्रंट ऑफिस जाएं।",
-    "नालसा ऑनलाइन पोर्टल https://nalsa.gov.in/legal-aid/ पर आवेदन करें।"
+    "अपने जिले के जिला न्यायालय में स्थित DLSA फ्रंट ऑफिस जाएं।",
+    "नालसा पोर्टल https://nalsa.gov.in/legal-aid/ पर आवेदन करें।"
   ],
-  "legal_aid_referral": "राष्ट्रीय विधिक सेवा प्राधिकरण (NALSA): https://nalsa.gov.in/legal-aid/ | राष्ट्रीय हेल्पलाइन: 15100 (टोल-फ्री)",
+  "legal_aid_referral": "राष्ट्रीय विधिक सेवा प्राधिकरण (NALSA): हेल्पलाइन 15100",
   "insufficient_evidence": false
 }
 ```

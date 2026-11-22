@@ -8,9 +8,20 @@ if str(backend_dir) not in sys.path:
     sys.path.insert(0, str(backend_dir))
 
 import gradio as gr
-from app.main import app as fastapi_app
+
+try:
+    import spaces
+    HAS_SPACES = True
+except ImportError:
+    HAS_SPACES = False
+
+def gpu_wrapper(func):
+    if HAS_SPACES:
+        return spaces.GPU(func)
+    return func
 
 # Define a companion Gradio UI for quick evaluation and testing
+@gpu_wrapper
 def query_nyayasetu(question: str):
     if not question.strip():
         return "Please enter a valid legal question."

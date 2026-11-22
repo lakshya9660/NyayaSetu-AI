@@ -19,7 +19,11 @@ import {
   generateFallbackAnswer
 } from './fallbackData';
 
-const API_BASE = '/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || (
+  typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? '/api/v1'
+    : 'https://lakshya9660-nyayasetu-ai.hf.space/api/v1'
+);
 
 class ApiService {
   private token: string | null = null;

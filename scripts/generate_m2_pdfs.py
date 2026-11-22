@@ -310,7 +310,13 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
             col_width = total_width / num_cols
             col_widths = [col_width] * num_cols
             if num_cols == 4:
-                col_widths = [115, 185, 64, 140]
+                first_cell = table_rows[0][0].lower()
+                if 'member' in first_cell:
+                    col_widths = [110, 85, 115, 194]
+                elif 'version' in first_cell:
+                    col_widths = [75, 145, 114, 170]
+                else:
+                    col_widths = [115, 185, 64, 140]
             elif num_cols == 6:
                 if table_rows[0][0].lower().startswith('test'):
                     col_widths = [32, 130, 48, 140, 114, 40]
@@ -361,7 +367,15 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
         num_cols = len(table_rows[0])
         col_width = 504 / num_cols
         col_widths = [col_width] * num_cols
-        if num_cols == 6:
+        if num_cols == 4:
+            first_cell = table_rows[0][0].lower()
+            if 'member' in first_cell:
+                col_widths = [110, 85, 115, 194]
+            elif 'version' in first_cell:
+                col_widths = [75, 145, 114, 170]
+            else:
+                col_widths = [115, 185, 64, 140]
+        elif num_cols == 6:
             col_widths = [72, 66, 72, 122, 122, 50]
         story.append(build_table(table_rows, col_widths, styles))
         

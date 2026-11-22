@@ -416,14 +416,13 @@ The platform implements a zero-trust citizen intelligence model:
 
 ## SECTION 7: TEAM CONTRIBUTION TABLE
 
-| Member Name | Enrollment No. | Role | Tasks Done in Milestone 2 | Evidence | Contribution (%) |
-|---|---|---|---|---|:---:|
-| **Lakshya Pratap Singh** | **S24CSEU0063** | Team Leader & System Architect | FastAPI backend development, RAG vector pipeline, database models, and cloud prototype deployment | `backend/app/`, `space.py`, 48 commits | **20%** |
-| **Nishika Upadhyay** | **S24CSEU0606** | Prompt Engineer | Prompt design (P1 & P2), prompt sheets, system prompt engineering, and prompt iteration log (v1–v4) | `prompts/`, Section 2 & 3, 14 commits | **20%** |
-| **Jhanvi Bhat** | **S24CSEU0687** | Frontend Developer | React 19 / TypeScript UI development, Rose Gold styling, bilingual English/Hindi localization | `frontend/src/`, UI components, 18 commits | **20%** |
-| **Tanvi Agrawal** | **S24CSEU0072** | QA & Security Engineer | Test suite design, 12 test inputs execution, edge-case evaluation, and prompt-injection security verification | `scripts/run_eval.py`, Test Table, 12 commits | **20%** |
-| **Niharika .** | **S24CSEU2660** | Technical Documentation & Video Lead | Supporting technical report authoring, screen recording reel script, video editing and narration | `docs/Aira_TechnicalReport.md`, Reel script, 10 commits | **20%** |
-| **Total** | | | | | **100%** |
+| Member Name | Enrollment No. | Role | Tasks Done in Milestone 2 |
+|---|---|---|---|
+| **Lakshya Pratap Singh** | **S24CSEU0063** | Team Leader & System Architect | FastAPI backend development, RAG vector pipeline, database models, and cloud prototype deployment |
+| **Nishika Upadhyay** | **S24CSEU0606** | Prompt Engineer | Prompt design (P1 & P2), prompt sheets, system prompt engineering, and prompt iteration log (v1–v4) |
+| **Jhanvi Bhat** | **S24CSEU0687** | Frontend Developer | React 19 / TypeScript UI development, Rose Gold styling, bilingual English/Hindi localization |
+| **Tanvi Agrawal** | **S24CSEU0072** | QA & Security Engineer | Test suite design, 12 test inputs execution, edge-case evaluation, and prompt-injection security verification |
+| **Niharika .** | **S24CSEU2660** | Technical Documentation & Video Lead | Supporting technical report authoring, screen recording reel script, video editing and narration |
 
 *All team members have reviewed, agreed to, and unanimously confirmed this contribution table and the details submitted in Milestone 2.*
 

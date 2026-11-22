@@ -8,7 +8,24 @@ if str(backend_dir) not in sys.path:
     sys.path.insert(0, str(backend_dir))
 
 import gradio as gr
-from app.main import app as fastapi_app
+from app.core.database import init_db, SessionLocal
+from app.core.seed import seed_database
+from app.api.v1.health import router as health_router
+from app.api.v1.auth import router as auth_router
+from app.api.v1.users import router as users_router
+from app.api.v1.chat import router as chat_router
+from app.api.v1.resources import router as resources_router
+from app.api.v1.sources import router as sources_router
+from app.api.v1.legal_aid import router as legal_aid_router
+from app.api.v1.admin import router as admin_router
+
+# Initialize SQLite database and seed baseline records
+init_db()
+db = SessionLocal()
+try:
+    seed_database(db)
+finally:
+    db.close()
 
 try:
     import spaces
@@ -21,17 +38,16 @@ def gpu_wrapper(func):
         return spaces.GPU(func)
     return func
 
-# Define a companion Gradio UI for quick evaluation and testing
+# Define query handler
 @gpu_wrapper
 def query_nyayasetu(question: str):
     if not question.strip():
         return "Please enter a valid legal question."
     try:
         from app.services.rag_service import rag_service
-        from app.core.database import SessionLocal
-        db = SessionLocal()
+        db_sess = SessionLocal()
         try:
-            res = rag_service.answer_query(db, question, language="en")
+            res = rag_service.answer_query(db_sess, question, language="en")
             answer = f"### ⚖️ NyayaSetu Grounded Response\n\n{res.get('answer', '')}\n\n"
             citations = res.get('citations', [])
             if citations:
@@ -40,7 +56,7 @@ def query_nyayasetu(question: str):
                     answer += f"- **{c.get('source_title', 'Act')}** (Section {c.get('section', 'N/A')}, p. {c.get('page_number', 'N/A')}): [Official Portal]({c.get('source_url', '#')})\n"
             return answer
         finally:
-            db.close()
+            db_sess.close()
     except Exception as e:
         return f"Error processing query: {str(e)}"
 
@@ -49,7 +65,7 @@ with gr.Blocks(title="NyayaSetu AI — Grounded Legal Platform") as demo:
     gr.Markdown("# ⚖️ NyayaSetu AI (न्यायसेतु)")
     gr.Markdown(
         "**Full-Stack Evidence-Grounded Legal Information & DLSA Navigation Platform**\n\n"
-        "🌐 **[Click here to open the Full React Web Portal](/)**\n\n"
+        "🏛️ Powered by FastAPI Backend, SQLite Database, and Grounded Statutory RAG Engine.\n\n"
         "---"
     )
     with gr.Row():
@@ -65,11 +81,15 @@ with gr.Blocks(title="NyayaSetu AI — Grounded Legal Platform") as demo:
 
     btn.click(fn=query_nyayasetu, inputs=q_input, outputs=output)
 
-# Mount Gradio app onto FastAPI at /gradio
-# "/" serves the React SPA, "/api/v1" serves FastAPI endpoints & SQLite DB, and "/gradio" serves Gradio
-app = gr.mount_gradio_app(fastapi_app, demo, path="/gradio")
+# Register all FastAPI API routes on demo.app
+demo.app.include_router(health_router, prefix="/api/v1")
+demo.app.include_router(auth_router, prefix="/api/v1")
+demo.app.include_router(users_router, prefix="/api/v1")
+demo.app.include_router(chat_router, prefix="/api/v1")
+demo.app.include_router(resources_router, prefix="/api/v1")
+demo.app.include_router(sources_router, prefix="/api/v1")
+demo.app.include_router(legal_aid_router, prefix="/api/v1")
+demo.app.include_router(admin_router, prefix="/api/v1")
 
 if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 7860))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    demo.launch()

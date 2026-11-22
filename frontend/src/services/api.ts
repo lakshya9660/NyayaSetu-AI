@@ -43,6 +43,7 @@ class ApiService {
     } else {
       localStorage.removeItem('nyayasetu_token');
       sessionStorage.removeItem('nyayasetu_token');
+      localStorage.removeItem('nyayasetu_current_user');
     }
   }
 
@@ -68,15 +69,87 @@ class ApiService {
       } as unknown as T;
     }
 
-    if (endpoint === '/auth/login' || endpoint === '/auth/register') {
+    if (endpoint === '/auth/register') {
+      let body: Record<string, string> = {};
+      try { body = JSON.parse(options.body as string); } catch {}
+      const newUser: User = {
+        id: "user-" + Math.random().toString(36).substring(2, 9),
+        email: body.email || "citizen@nyayasetu.org",
+        full_name: body.full_name || (body.email ? body.email.split('@')[0] : "Citizen User"),
+        preferred_language: (body.preferred_language === "hi" ? "hi" : "en"),
+        role: "citizen",
+        is_active: true,
+        created_at: new Date().toISOString()
+      };
+      try {
+        const usersStr = localStorage.getItem('nyayasetu_registered_users');
+        const users: User[] = usersStr ? JSON.parse(usersStr) : [];
+        users.push(newUser);
+        localStorage.setItem('nyayasetu_registered_users', JSON.stringify(users));
+        localStorage.setItem('nyayasetu_current_user', JSON.stringify(newUser));
+      } catch {}
       return {
-        access_token: "mock-jwt-token-nyayasetu",
+        access_token: "mock-jwt-token-" + Date.now(),
         token_type: "bearer",
-        user: FALLBACK_USER
+        user: newUser
+      } as unknown as T;
+    }
+
+    if (endpoint === '/auth/login') {
+      let body: Record<string, string> = {};
+      try { body = JSON.parse(options.body as string); } catch {}
+      const email = (body.email || "").toLowerCase();
+      let matchedUser: User | null = null;
+      try {
+        const usersStr = localStorage.getItem('nyayasetu_registered_users');
+        const users: User[] = usersStr ? JSON.parse(usersStr) : [];
+        matchedUser = users.find(u => u.email.toLowerCase() === email) || null;
+      } catch {}
+
+      if (!matchedUser) {
+        if (email === 'admin@nyayasetu.org') {
+          matchedUser = {
+            id: "admin-id-1",
+            email: "admin@nyayasetu.org",
+            full_name: "System Administrator",
+            preferred_language: "en",
+            role: "admin",
+            is_active: true,
+            created_at: new Date().toISOString()
+          };
+        } else if (email === 'citizen@nyayasetu.org' || !email) {
+          matchedUser = FALLBACK_USER;
+        } else {
+          matchedUser = {
+            id: "user-" + Math.random().toString(36).substring(2, 9),
+            email: email,
+            full_name: email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+            preferred_language: "en",
+            role: "citizen",
+            is_active: true,
+            created_at: new Date().toISOString()
+          };
+        }
+      }
+
+      try {
+        localStorage.setItem('nyayasetu_current_user', JSON.stringify(matchedUser));
+      } catch {}
+
+      return {
+        access_token: "mock-jwt-token-" + Date.now(),
+        token_type: "bearer",
+        user: matchedUser
       } as unknown as T;
     }
 
     if (endpoint === '/auth/me' || endpoint === '/users/me') {
+      try {
+        const curr = localStorage.getItem('nyayasetu_current_user');
+        if (curr) {
+          return JSON.parse(curr) as T;
+        }
+      } catch {}
       return FALLBACK_USER as unknown as T;
     }
 

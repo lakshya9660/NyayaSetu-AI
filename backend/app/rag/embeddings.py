@@ -22,7 +22,16 @@ HINDI_LEGAL_GLOSSARY = {
     "अदालत": "court commission lok adalat",
     "हेलमेट": "helmet protective headgear two wheeler motor vehicles",
     "चालान": "challan fine penalty traffic violation",
-    "ट्रैफिक": "traffic motor vehicle road safety"
+    "ट्रैफिक": "traffic motor vehicle road safety",
+    "घरेलू हिंसा": "domestic violence cruelty pwdva",
+    "थप्पड़": "slap slapping assault physical abuse violence hurt",
+    "मारपीट": "beating assault physical abuse violence hurt",
+    "पति": "husband spouse domestic cruelty",
+    "दहेज": "dowry cruelty harassment",
+    "ससुराल": "in-laws matrimonial home shared household",
+    "एफआईआर": "fir police complaint zero fir",
+    "चेक": "cheque dishonour 138 negotiable",
+    "जमानत": "bail arrest custody"
 }
 
 STOPWORDS = {

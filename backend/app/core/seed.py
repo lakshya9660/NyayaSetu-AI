@@ -151,6 +151,82 @@ SEED_DOCUMENTS = [
                 )
             )
         ]
+    },
+    {
+        "title": "Protection of Women from Domestic Violence Act, 2005 & Bharatiya Nyaya Sanhita, 2023 — Spousal Abuse, Cruelty & Protection Orders",
+        "publisher": "Ministry of Women and Child Development & Ministry of Home Affairs",
+        "document_type": "Statute Excerpt",
+        "official_url": "https://wcd.nic.in/",
+        "verification_date": "Verified 2026",
+        "pages": [
+            ParsedPage(
+                page_number=1,
+                section="PWDVA Sections 3, 18, 19, 20: Domestic Violence & Reliefs / घरेलू हिंसा और संरक्षण आदेश",
+                text=(
+                    "Under Section 3 of the Protection of Women from Domestic Violence Act, 2005 (PWDVA / घरेलू हिंसा से महिलाओं का संरक्षण अधिनियम), "
+                    "any act, omission or commission which harms, injures or endangers the health, safety, life, limb or well-being (mental or physical) "
+                    "including physical abuse (slapping, hitting, beating, assault), sexual abuse, verbal and emotional abuse, or economic abuse constitutes domestic violence.\n"
+                    "Reliefs granted by Judicial Magistrate under PWDVA:\n"
+                    "1. Section 18 Protection Orders: Prohibiting the respondent (husband/relatives) from committing acts of domestic violence, entering place of employment or residence, or attempting communication.\n"
+                    "2. Section 19 Residence Orders: Restraining respondent from dispossessing or evicting the aggrieved woman from the shared household (matrimonial home / साझा घर), regardless of ownership.\n"
+                    "3. Section 20 Monetary Relief: Compensation for medical expenses, loss of earnings, and monthly maintenance for the woman and children.\n"
+                    "4. Immediate Action & Helplines: National Commission for Women helpline 7827170170, Women Helpline 1091, Emergency 112. "
+                    "Under Section 12(c) of Legal Services Authorities Act, 1987, all women are entitled to 100% free legal aid and court representation via DLSA."
+                )
+            ),
+            ParsedPage(
+                page_number=2,
+                section="BNS Sections 85, 86 & 115: Cruelty & Hurt / क्रूरता व शारीरिक चोट",
+                text=(
+                    "Under the Bharatiya Nyaya Sanhita, 2023 (BNS / भारतीय न्याय संहिता):\n"
+                    "1. Section 85 & 86 (formerly Section 498A IPC): Whoever, being the husband or relative of the husband of a woman, subjects such woman to cruelty "
+                    "(willful conduct driving to suicide or grave injury, physical or mental harm, or harassment for property/dowry) "
+                    "shall be punished with imprisonment for a term up to three (3) years and fine.\n"
+                    "2. Section 115 (formerly Section 323 IPC): Voluntarily causing hurt by slapping, beating or physical violence carries imprisonment up to one year or fine.\n"
+                    "3. Zero FIR (Section 173(4) BNSS): An aggrieved woman can lodge a Zero FIR at any police station across India without jurisdictional limitations."
+                )
+            )
+        ]
+    },
+    {
+        "title": "Bharatiya Nagarik Suraksha Sanhita, 2023 — Mandatory FIR & Zero FIR (Section 173)",
+        "publisher": "Ministry of Home Affairs",
+        "document_type": "Statute Excerpt",
+        "official_url": "https://www.mha.gov.in/",
+        "verification_date": "Verified 2026",
+        "pages": [
+            ParsedPage(
+                page_number=1,
+                section="Section 173: Mandatory Registration of FIR & Zero FIR / धारा 173: अनिवार्य एफआईआर व जीरो एफआईआर",
+                text=(
+                    "Under Section 173 of the Bharatiya Nagarik Suraksha Sanhita, 2023 (BNSS / भारतीय नागरिक सुरक्षा संहिता):\n"
+                    "1. Mandatory FIR (Section 173(1)): In cognizable offenses, the police officer is legally mandated to register an FIR without delay.\n"
+                    "2. Zero FIR (Section 173(4)): If an offense is committed outside a police station's territorial jurisdiction, that station MUST still register a Zero FIR, hand a copy to complainant, and transfer the case to the competent jurisdiction.\n"
+                    "3. Recourse against Refusal: If an officer refuses to register an FIR, the complainant can send the complaint in writing by registered post to the Superintendent of Police (SP) under Section 173(3) BNSS or file an application before the Judicial Magistrate under Section 175(3) BNSS."
+                )
+            )
+        ]
+    },
+    {
+        "title": "Negotiable Instruments Act, 1881 — Section 138 Dishonour of Cheque",
+        "publisher": "Ministry of Finance",
+        "document_type": "Statute Excerpt",
+        "official_url": "https://financialservices.gov.in/",
+        "verification_date": "Verified 2026",
+        "pages": [
+            ParsedPage(
+                page_number=1,
+                section="Section 138: Dishonour of Cheque for Insufficiency of Funds / चेक अनादर व कानूनी नोटिस",
+                text=(
+                    "Under Section 138 of the Negotiable Instruments Act, 1881 (परक्राम्य लिखत अधिनियम की धारा 138):\n"
+                    "1. Dishonour of Cheque: Where a cheque is returned by the bank unpaid due to insufficiency of funds or exceeding agreed arrangement, it constitutes a criminal offense.\n"
+                    "2. Statutory Demand Notice: The payee must issue a statutory legal notice within thirty (30) days of receiving the cheque return memo.\n"
+                    "3. 15-Day Cure Period: The drawer is given fifteen (15) days to make payment.\n"
+                    "4. Criminal Complaint: If unpaid, a complaint must be filed before the Judicial Magistrate within thirty (30) days thereafter.\n"
+                    "5. Punishment: Imprisonment up to two (2) years or fine up to twice the amount of the cheque, or both."
+                )
+            )
+        ]
     }
 ]
 

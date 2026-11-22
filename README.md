@@ -15,9 +15,9 @@ pinned: false
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ### 📌 SCSE4041 Prompt Engineering — Milestone 2
-* **Team ID:** T23
+* **Team ID:** PE-B25-46
 * **Team Name:** Aira
-* **Batch:** B26, 29 and 30
+* **Batch:** B25 - B36
 * **Faculty:** Dr. Saurabh R Srivastava
 * **Live Prototype Link:** [https://nyasetu.netlify.app/chat](https://nyasetu.netlify.app/chat)
 * **GitHub Repository:** [https://github.com/lakshya9660/NyayaSetu-AI](https://github.com/lakshya9660/NyayaSetu-AI)

@@ -2,8 +2,9 @@
 ## Technical Report (Supporting Document — Milestone 2)
 **Course:** SCSE4041 — Prompt Engineering  
 **Problem Statement:** G3 — Legal Assistance  
+**Team ID:** PE-B25-46  
 **Organisation:** Team Aira  
-**Batch:** B26, 29 and 30  
+**Batch:** B25 - B36  
 **Faculty:** Dr. Saurabh R Srivastava  
 **Date:** November 2026  
 

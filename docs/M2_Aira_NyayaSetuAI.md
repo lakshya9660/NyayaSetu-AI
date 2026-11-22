@@ -5,11 +5,11 @@
 
 ## SECTION 1: COVER PAGE
 
-* **Team ID:** [Enter your Team ID assigned after Milestone 1, e.g., T23 / G3-Team]
+* **Team ID:** PE-B25-46
 * **Team Name:** Aira
 * **Project Title:** NyayaSetu AI — Community Legal Information & DLSA Navigation Platform
 * **Problem Statement ID:** G3 (Governance & Legal-Assistance Digital Platforms — UNDP Rule of Law & Justice Benchmark)
-* **Batch:** B26, 29 and 30
+* **Batch:** B25 - B36
 * **Faculty Name:** Dr. Saurabh R Srivastava
 * **Team Members & Enrollment Numbers:**
   1. **S24CSEU0063 — Lakshya Pratap Singh (Team Leader)**
@@ -20,7 +20,7 @@
 * **The Three Essential Links:**
   * **Prototype Link:** https://nyasetu.netlify.app/chat (Live Public HTTPS Prototype)
   * **GitHub Repository Link:** https://github.com/lakshya9660/NyayaSetu-AI (Public Repository)
-  * **Reel Link & Exact Length:** [Paste your Google Drive / Unlisted YouTube Link here] — **Exact Length: 118 seconds** (within 90–150s guideline)
+  * **Reel Link & Exact Length:** [Paste your Google Drive / Unlisted YouTube Link here] — **Exact Length: 120 seconds** (within 90–150s guideline)
 
 ---
 

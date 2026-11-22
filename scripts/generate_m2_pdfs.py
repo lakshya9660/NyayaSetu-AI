@@ -365,13 +365,13 @@ if __name__ == '__main__':
     docs_dir = os.path.join(os.getcwd(), 'docs')
     m2_md = os.path.join(docs_dir, 'M2_Aira_NyayaSetuAI.md')
     
-    # 1. Generate M2_Aira_NyayaSetuAI.pdf
+    # 1. Generate M2_PE-B25-46_NyayaSetuAI.pdf (Matching guideline format M2_TeamID_ProjectTitle.pdf)
+    m2_pdf_official = os.path.join(docs_dir, 'M2_PE-B25-46_NyayaSetuAI.pdf')
+    parse_and_build_pdf(m2_md, m2_pdf_official, is_main_doc=True)
+    
+    # 2. Also keep M2_Aira_NyayaSetuAI.pdf
     m2_pdf_aira = os.path.join(docs_dir, 'M2_Aira_NyayaSetuAI.pdf')
     parse_and_build_pdf(m2_md, m2_pdf_aira, is_main_doc=True)
-    
-    # 2. Also generate M2_T23_NyayaSetuAI.pdf (Matching guideline format M2_TeamID_ProjectTitle.pdf)
-    m2_pdf_t23 = os.path.join(docs_dir, 'M2_T23_NyayaSetuAI.pdf')
-    parse_and_build_pdf(m2_md, m2_pdf_t23, is_main_doc=True)
     
     # 3. Generate Supporting Document Aira_TechnicalReport.pdf
     tech_md = os.path.join(docs_dir, 'Aira_TechnicalReport.md')

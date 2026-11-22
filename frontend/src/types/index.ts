@@ -31,7 +31,7 @@ export interface ChatMessage {
   content: string;
   language: string;
   topic?: string | null;
-  retrieval_status?: 'grounded' | 'insufficient_evidence' | 'demo_mode' | 'error' | null;
+  retrieval_status?: 'grounded' | 'insufficient_evidence' | 'demo_mode' | 'refusal' | 'error' | null;
   sources_cited: SourceReference[];
   supported_points: string[];
   suggested_next_steps: string[];

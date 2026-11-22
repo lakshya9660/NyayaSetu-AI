@@ -1,17 +1,19 @@
 """
-Script to generate the two required Milestone 2 submission PDFs:
-1. docs/M2_Aira_NyayaSetuAI.pdf (Milestone 2 Main Document)
-2. docs/Aira_TechnicalReport.pdf (Supporting Document)
+Script to generate the required Milestone 2 submission PDFs:
+1. docs/M2_Aira_NyayaSetuAI.pdf (and M2_T23_NyayaSetuAI.pdf)
+2. docs/Aira_TechnicalReport.pdf
+Includes native Devanagari Hindi font support and embedded real screenshots.
 """
 
 import os
 import re
 from xml.sax.saxutils import escape
+from PIL import Image as PILImage
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Preformatted, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Preformatted, KeepTogether, HRFlowable, Image as RLImage
 )
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
@@ -143,10 +145,19 @@ def get_custom_styles():
     ))
     styles.add(ParagraphStyle(
         name='CodeSnippet',
-        fontName=BASE_FONT, # Use Nirmala so Hindi inside code/JSON renders natively!
+        fontName=BASE_FONT,
         fontSize=7.5,
         leading=10,
         textColor=colors.HexColor('#0f172a')
+    ))
+    styles.add(ParagraphStyle(
+        name='CaptionCustom',
+        fontName=BASE_FONT_BOLD,
+        fontSize=8,
+        leading=11,
+        textColor=colors.HexColor('#475569'),
+        spaceAfter=8,
+        alignment=1 # Center
     ))
     return styles
 
@@ -217,6 +228,35 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
     while i < len(lines):
         line = lines[i].rstrip('\r\n')
         
+        # Check screenshot syntax: `[Screenshot: docs/images/test1_run.png]`
+        screenshot_match = re.search(r'`?\[Screenshot:\s*([^\s\]]+)\]`?', line)
+        if screenshot_match:
+            img_rel_path = screenshot_match.group(1).replace('/', os.sep)
+            img_abs_path = os.path.abspath(img_rel_path)
+            if os.path.exists(img_abs_path):
+                try:
+                    pil_img = PILImage.open(img_abs_path)
+                    w, h = pil_img.size
+                    target_w = 480
+                    target_h = int(target_w * (h / w))
+                    if target_h > 260:
+                        target_h = 260
+                        target_w = int(target_h * (w / h))
+                    
+                    img_flowable = RLImage(img_abs_path, width=target_w, height=target_h)
+                    wrapper_table = Table([[img_flowable]], colWidths=[504])
+                    wrapper_table.setStyle(TableStyle([
+                        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+                        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+                        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+                        ('TOPPADDING', (0,0), (-1,-1), 4),
+                    ]))
+                    story.append(wrapper_table)
+                except Exception as ex:
+                    print(f"Error loading image {img_abs_path}: {ex}")
+            i += 1
+            continue
+
         # Check code block fences
         if line.startswith('```'):
             if in_code_block:
@@ -249,7 +289,6 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
             
         # Check markdown table
         if line.startswith('|') and line.endswith('|'):
-            # Check if separator row
             if re.match(r'^\|[\s\-:]+(\|[\s\-:]+)+\|$', line):
                 i += 1
                 continue
@@ -259,7 +298,6 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
             i += 1
             continue
         elif in_table:
-            # Table ended
             num_cols = len(table_rows[0])
             total_width = 504
             col_width = total_width / num_cols
@@ -267,7 +305,6 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
             if num_cols == 4:
                 col_widths = [115, 185, 64, 140]
             elif num_cols == 6:
-                # Test table or Contribution table
                 if table_rows[0][0].lower().startswith('test'):
                     col_widths = [32, 130, 48, 140, 114, 40]
                 else:
@@ -299,8 +336,8 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
         elif line_stripped.startswith('### '):
             h2_text = line_stripped[4:]
             story.append(Paragraph(sanitize_text(h2_text), styles['Heading2Custom']))
-        elif line_stripped.startswith('#### '):
-            h3_text = line_stripped[5:]
+        elif line_stripped.startswith('#### ') or line_stripped.startswith('##### '):
+            h3_text = re.sub(r'^#+\s*', '', line_stripped)
             p = Paragraph(f"<b>{sanitize_text(h3_text)}</b>", styles['BodyCustom'])
             story.append(p)
         elif line_stripped.startswith('* ') or line_stripped.startswith('- '):
@@ -327,10 +364,16 @@ def parse_and_build_pdf(md_path, pdf_path, is_main_doc=True):
 if __name__ == '__main__':
     docs_dir = os.path.join(os.getcwd(), 'docs')
     m2_md = os.path.join(docs_dir, 'M2_Aira_NyayaSetuAI.md')
-    m2_pdf = os.path.join(docs_dir, 'M2_Aira_NyayaSetuAI.pdf')
     
+    # 1. Generate M2_Aira_NyayaSetuAI.pdf
+    m2_pdf_aira = os.path.join(docs_dir, 'M2_Aira_NyayaSetuAI.pdf')
+    parse_and_build_pdf(m2_md, m2_pdf_aira, is_main_doc=True)
+    
+    # 2. Also generate M2_T23_NyayaSetuAI.pdf (Matching guideline format M2_TeamID_ProjectTitle.pdf)
+    m2_pdf_t23 = os.path.join(docs_dir, 'M2_T23_NyayaSetuAI.pdf')
+    parse_and_build_pdf(m2_md, m2_pdf_t23, is_main_doc=True)
+    
+    # 3. Generate Supporting Document Aira_TechnicalReport.pdf
     tech_md = os.path.join(docs_dir, 'Aira_TechnicalReport.md')
     tech_pdf = os.path.join(docs_dir, 'Aira_TechnicalReport.pdf')
-    
-    parse_and_build_pdf(m2_md, m2_pdf, is_main_doc=True)
     parse_and_build_pdf(tech_md, tech_pdf, is_main_doc=False)

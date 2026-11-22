@@ -8,11 +8,25 @@ app_file: space.py
 pinned: false
 ---
 
-# NyayaSetu AI — Community Legal Information Platform
+# NyayaSetu AI — Community Legal Information & DLSA Navigation Platform
 
 [![Backend Tests](https://img.shields.io/badge/pytest-22%20passed-emerald)](backend/app/tests)
 [![Evaluation](https://img.shields.io/badge/eval-15%2F15%20passed%20(100%25)-teal)](scripts/run_eval.py)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+### 📌 SCSE4041 Prompt Engineering — Milestone 2
+* **Team ID:** T23
+* **Team Name:** Aira
+* **Live Prototype Link:** [https://nyasetu.netlify.app/chat](https://nyasetu.netlify.app/chat)
+* **GitHub Repository:** [https://github.com/lakshya9660/NyayaSetu-AI](https://github.com/lakshya9660/NyayaSetu-AI)
+* **Team Members:**
+  1. `S24CSEU0063` — Lakshya Pratap Singh (Team Leader)
+  2. `S24CSEU0606` — Nishika Upadhyay
+  3. `S24CSEU0687` — Jhanvi Bhat
+  4. `S24CSEU0072` — Tanvi Agrawal
+  5. `S24CSEU2660` — Niharika .
+
+---
 
 **NyayaSetu AI (न्यायसेतु)** is a full-stack, evidence-grounded legal information platform designed to help Indian citizens understand publicly available, verified legal information and locate District Legal Services Authorities (DLSA). Users can ask legal questions in simple English or everyday Hindi and receive understandable explanations strictly grounded in official documents with verifiable page and section citations.
 

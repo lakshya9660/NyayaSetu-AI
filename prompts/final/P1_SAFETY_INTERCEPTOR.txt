@@ -1,0 +1,7 @@
+Evaluate input: {user_query}
+Match against Criminal Harms & Statutory Prohibitions:
+- BNS Section 103 (Murder / Violent bodily offenses)
+- BNS Section 238 (Concealing weapons / Destroying evidence)
+- Solicitation of courtroom legal representation or outcome guarantees.
+
+If matched, issue immediate statutory refusal with BNS citations and emergency helpline (112 / 100).

@@ -8,6 +8,7 @@ if str(backend_dir) not in sys.path:
     sys.path.insert(0, str(backend_dir))
 
 import gradio as gr
+from app.main import app as fastapi_app
 
 try:
     import spaces

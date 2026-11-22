@@ -1,3 +1,13 @@
+---
+title: NyayaSetu AI
+emoji: ⚖️
+colorFrom: pink
+colorTo: red
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # NyayaSetu AI — Community Legal Information Platform
 
 [![Backend Tests](https://img.shields.io/badge/pytest-22%20passed-emerald)](backend/app/tests)

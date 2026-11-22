@@ -9,8 +9,8 @@
 * **Team Name:** Aira
 * **Project Title:** NyayaSetu AI — Community Legal Information & DLSA Navigation Platform
 * **Problem Statement ID:** G3 (Governance & Legal-Assistance Digital Platforms — UNDP Rule of Law & Justice Benchmark)
-* **Batch:** B01 - B12
-* **Faculty Name:** Dr. Sonal (Course Coordinator & Evaluator)
+* **Batch:** B26, 29 and 30
+* **Faculty Name:** Dr. Saurabh R Srivastava
 * **Team Members & Enrollment Numbers:**
   1. **S24CSEU0063 — Lakshya Pratap Singh (Team Leader)**
   2. **S24CSEU0606 — Nishika Upadhyay**

@@ -1,8 +1,10 @@
 # NyayaSetu AI — Community Legal Information & DLSA Navigation Platform
 ## Technical Report (Supporting Document — Milestone 2)
 **Course:** SCSE4041 — Prompt Engineering  
-**Team Name:** Aira  
-**Problem Statement:** G3 (Governance & Legal-Assistance)  
+**Problem Statement:** G3 — Legal Assistance  
+**Organisation:** Team Aira  
+**Batch:** B26, 29 and 30  
+**Faculty:** Dr. Saurabh R Srivastava  
 **Date:** November 2026  
 
 ---

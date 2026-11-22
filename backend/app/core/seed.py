@@ -227,6 +227,47 @@ SEED_DOCUMENTS = [
                 )
             )
         ]
+    },
+    {
+        "title": "Maintenance and Welfare of Parents and Senior Citizens Act, 2007 — Protection Against Eviction & Section 23",
+        "publisher": "Ministry of Social Justice and Empowerment",
+        "document_type": "Statute Excerpt",
+        "official_url": "https://socialjustice.gov.in/",
+        "verification_date": "Verified 2026",
+        "pages": [
+            ParsedPage(
+                page_number=1,
+                section="Section 23: Transfer of Property to be Void in Certain Circumstances / धारा 23: संपत्ति हस्तांतरण रद्द करना व बेदखली",
+                text=(
+                    "Under Section 23 of the Maintenance and Welfare of Parents and Senior Citizens Act, 2007 (माता-पिता और वरिष्ठ नागरिकों का भरण-पोषण और कल्याण अधिनियम, 2007 की धारा 23):\n"
+                    "1. Revocation of Property Transfer: Where any senior citizen has transferred property (by gift, deed, or otherwise) subject to the condition that the transferee provides basic amenities and physical needs, and the child/relative fails or refuses to provide such care, "
+                    "the said transfer shall be deemed to have been made by fraud or coercion or under undue influence and shall at the option of the transferor be declared VOID by the Maintenance Tribunal.\n"
+                    "2. Eviction of Abusive Children: Senior citizens cannot be evicted or thrown out of their self-acquired or ancestral home by their children. The Maintenance Tribunal presided over by the Sub-Divisional Magistrate (SDM) has the statutory authority to order summary eviction of abusive children/relatives.\n"
+                    "3. Monthly Maintenance (Sections 4 & 5): Children and legal heirs are statutorily obligated to maintain their parents. The Tribunal can order monthly maintenance allowance.\n"
+                    "4. National Elderline Helpline: 14567 (Toll-Free). Under Section 12(c) of Legal Services Authorities Act, 1987, senior citizen women and eligible citizens are entitled to 100% free legal aid via DLSA."
+                )
+            )
+        ]
+    },
+    {
+        "title": "Specific Relief Act, 1963 & Code of Civil Procedure, 1908 — Property Rights, Injunction & Possession",
+        "publisher": "Ministry of Law and Justice",
+        "document_type": "Statute Excerpt",
+        "official_url": "https://lawmin.gov.in/",
+        "verification_date": "Verified 2026",
+        "pages": [
+            ParsedPage(
+                page_number=1,
+                section="Sections 5 & 6 Specific Relief Act & Order 39 CPC: Ownership, Injunction & Dispossession / संपत्ति अधिकार व स्टे आर्डर",
+                text=(
+                    "Under the Specific Relief Act, 1963 and the Code of Civil Procedure, 1908 (CPC):\n"
+                    "1. Right of Legal Owner (Section 5 & 6): A person entitled to the possession of specific immovable property may recover it in the manner provided by CPC. No person, including a brother, relative or co-sharer, can unlawfully dispossess or withhold property from the true registered owner without due process of law.\n"
+                    "2. Injunction Against Trespass & Third-Party Rights (Order 39 Rules 1 & 2 CPC): The registered owner can file a Civil Suit for Declaration and Permanent Injunction, and immediately obtain an interim Stay Order (Temporary Injunction) restraining the brother/relative from interfering with possession, creating encumbrances, or attempting sale.\n"
+                    "3. Criminal Trespass (Section 329 Bharatiya Nyaya Sanhita, 2023 / former Section 441 IPC): Unlawfully entering or remaining upon property with intent to commit an offense, intimidate, or dispossess constitutes criminal trespass, actionable via police complaint.\n"
+                    "4. Cheating & Forged Deeds (Section 318 BNS / former Section 420 IPC): Attempting to fabricate revenue records or withhold property dishonestly carries imprisonment up to seven years."
+                )
+            )
+        ]
     }
 ]
 

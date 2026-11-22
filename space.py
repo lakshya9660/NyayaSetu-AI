@@ -81,15 +81,33 @@ with gr.Blocks(title="NyayaSetu AI — Grounded Legal Platform") as demo:
 
     btn.click(fn=query_nyayasetu, inputs=q_input, outputs=output)
 
-# Register all FastAPI API routes on demo.app
-demo.app.include_router(health_router, prefix="/api/v1")
-demo.app.include_router(auth_router, prefix="/api/v1")
-demo.app.include_router(users_router, prefix="/api/v1")
-demo.app.include_router(chat_router, prefix="/api/v1")
-demo.app.include_router(resources_router, prefix="/api/v1")
-demo.app.include_router(sources_router, prefix="/api/v1")
-demo.app.include_router(legal_aid_router, prefix="/api/v1")
-demo.app.include_router(admin_router, prefix="/api/v1")
+# Initialize FastAPI application with CORS
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+fastapi_app = FastAPI(title="NyayaSetu AI Backend", docs_url="/api/docs", openapi_url="/api/openapi.json")
+
+fastapi_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register all FastAPI API routes
+fastapi_app.include_router(health_router, prefix="/api/v1")
+fastapi_app.include_router(auth_router, prefix="/api/v1")
+fastapi_app.include_router(users_router, prefix="/api/v1")
+fastapi_app.include_router(chat_router, prefix="/api/v1")
+fastapi_app.include_router(resources_router, prefix="/api/v1")
+fastapi_app.include_router(sources_router, prefix="/api/v1")
+fastapi_app.include_router(legal_aid_router, prefix="/api/v1")
+fastapi_app.include_router(admin_router, prefix="/api/v1")
+
+# Mount Gradio Blocks on the root FastAPI app
+app = gr.mount_gradio_app(fastapi_app, demo, path="/")
 
 if __name__ == "__main__":
-    demo.launch()
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=7860)

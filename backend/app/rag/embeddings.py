@@ -31,7 +31,15 @@ HINDI_LEGAL_GLOSSARY = {
     "ससुराल": "in-laws matrimonial home shared household",
     "एफआईआर": "fir police complaint zero fir",
     "चेक": "cheque dishonour 138 negotiable",
-    "जमानत": "bail arrest custody"
+    "जमानत": "bail arrest custody",
+    "वरिष्ठ नागरिक": "senior citizen elderly parents maintenance 2007",
+    "बुजुर्ग": "senior citizen elderly parents maintenance 2007",
+    "माता पिता": "parents maintenance senior citizens 2007",
+    "संपत्ति": "property ownership possession injunction 1963",
+    "जमीन": "property land ownership possession injunction",
+    "मकान": "house property residence possession",
+    "कब्जा": "possession trespass dispossession injunction",
+    "भाई": "brother relative family property dispute"
 }
 
 STOPWORDS = {

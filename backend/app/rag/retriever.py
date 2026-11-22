@@ -54,6 +54,11 @@ def retrieve_relevant_chunks(
             continue
 
         score = cosine_similarity(query_vector, chunk_vector)
+        # Title match boost for primary statutory authority
+        doc_title_lower = doc.title.lower()
+        title_matches = sum(1 for t in query_tokens if len(t) > 2 and t in doc_title_lower)
+        score += title_matches * 0.04
+
         if score >= threshold:
             scored_chunks.append({
                 "chunk_id": chunk.id,

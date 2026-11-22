@@ -53,10 +53,12 @@ def detect_topic(query: str) -> str:
         return "Consumer Protection"
     elif any(k in q_lower for k in ["rent", "tenant", "landlord", "eviction", "lease", "किराया", "किरायेदार", "मकान मालिक"]):
         return "Tenancy & Housing"
+    elif any(k in q_lower for k in ["68 year", "60 year", "70 year", "senior citizen", "elderly", "kids", "throw me out", "throw out", "parents", "old mother", "old father", "माता पिता", "बुजुर्ग", "वरिष्ठ नागरिक"]):
+        return "Senior Citizens Protection & Maintenance"
+    elif any(k in q_lower for k in ["owner", "property", "brother", "sister", "withhold", "withold", "grab", "encroach", "trespass", "possession", "dispossess", "kabza", "registry", "zameen", "makan", "जमीन", "मकान", "कब्जा", "भाई"]):
+        return "Property Ownership & Civil Injunction Rights"
     elif any(k in q_lower for k in ["women", "maintenance", "महिला"]):
         return "Women's Rights & Family Protection"
-    elif any(k in q_lower for k in ["senior citizen", "maintenance", "बुजुर्ग", "वरिष्ठ नागरिक"]):
-        return "Senior Citizens Protection"
     elif any(k in q_lower for k in ["helmet", "traffic", "challan", "motor vehicle", "driving", "two wheeler", "हेलमेट", "चालान", "ट्रैफिक"]):
         return "Motor Vehicles & Traffic Regulations"
     return "General Legal Information"
@@ -306,7 +308,46 @@ def synthesize_hindi_legal_answer(query: str, primary_doc: Dict[str, Any], retri
         ]
         referral = "राष्ट्रीय विधिक सेवा प्राधिकरण (NALSA): https://nalsa.gov.in/legal-aid/ | हेल्पलाइन: 15100"
 
-    # 8. Generic Statutory Document Match
+    # 8. Senior Citizens & Eviction by Children (MWPSC Act 2007)
+    elif "Senior Citizens" in doc_title or any(w in query for w in ["माता पिता", "बुजुर्ग", "वरिष्ठ नागरिक", "घर से निकाल"]) or any(w in q_lower for w in ["senior citizen", "elderly", "68 year", "throw"]):
+        answer = (
+            "**माता-पिता और वरिष्ठ नागरिकों का भरण-पोषण और कल्याण अधिनियम, 2007 के तहत बुजुर्ग माता-पिता को घर से बेदखल करना गैरकानूनी है:**\n\n"
+            "1. **संपत्ति हस्तांतरण रद्द करना (धारा 23)**: यदि माता-पिता ने बच्चों को संपत्ति गिफ्ट की थी और बच्चे देखभाल नहीं कर रहे या घर से निकाल रहे हैं, तो मेंटेनेंस ट्रिब्यूनल (SDM) उस ट्रांसफर को 'शून्य' (VOID) घोषित कर संपत्ति वापस दिला सकता है।\n"
+            "2. **बच्चों की बेदखली**: ट्रिब्यूनल को बुजुर्ग माता-पिता के मकान से प्रताड़ित करने वाले बच्चों को बेदखल करने का अधिकार है।\n"
+            "3. **अनिवार्य भरण-पोषण (धारा 4 व 5)**: बच्चों को माता-पिता का मासिक भरण-पोषण देना अनिवार्य है।\n"
+            "4. **हेल्पलाइन 14567**: एल्डरलाइन पर कॉल करके तुरंत सरकारी सहायता प्राप्त करें।"
+        )
+        points = [
+            "धारा 23 के तहत बच्चों को दी गई संपत्ति वापस ली जा सकती है और बच्चों को घर से निकाला जा सकता है।",
+            "राष्ट्रीय वरिष्ठ नागरिक हेल्पलाइन 14567 से तुरंत सहायता प्राप्त की जा सकती है।"
+        ]
+        next_steps = [
+            "राष्ट्रीय एल्डरलाइन 14567 पर तुरंत संपर्क करें।",
+            "एसडीएम / मेंटेनेंस ट्रिब्यूनल के समक्ष धारा 23 व 5 में आवेदन करें।",
+            "DLSA कार्यालय से धारा 12(c) में मुफ्त वकील प्राप्त करें।"
+        ]
+        referral = "राष्ट्रीय वरिष्ठ नागरिक हेल्पलाइन (Elderline): 14567 | पुलिस: 112 | NALSA: 15100"
+
+    # 9. Property Rights & Injunction (Specific Relief Act & CPC)
+    elif "Specific Relief" in doc_title or any(w in query for w in ["संपत्ति", "जमीन", "मकान", "कब्जा", "भाई"]) or any(w in q_lower for w in ["owner", "withhold", "withold", "property", "brother"]):
+        answer = (
+            "**विशिष्ट अनुतोष अधिनियम, 1963 एवं सिविल प्रक्रिया संहिता (CPC) के तहत पंजीकृत संपत्ति मालिक के कानूनी अधिकार:**\n\n"
+            "1. **अदालती स्टे आर्डर (आदेश 39 नियम 1 व 2 CPC)**: कोई भी व्यक्ति या भाई पंजीकृत मालिक को गैरकानूनी तरीके से बेदखल नहीं कर सकता। दीवानी अदालत से तत्काल स्टे आर्डर (Injunction) प्राप्त किया जा सकता है।\n"
+            "2. **कब्जा वापस पाना (धारा 5 व 6 Specific Relief Act)**: वैध मालिक को अवैध कब्जे से तुरंत संपत्ति का कब्जा वापस पाने का अधिकार है।\n"
+            "3. **आपराधिक अतिचार (BNS धारा 329)**: जबरन कब्जा या धमकी देने पर पुलिस में आपराधिक अतिचार की एफआईआर दर्ज कराएं।"
+        )
+        points = [
+            "पंजीकृत मालिक को बिना अदालती डिक्री के बेदखल नहीं किया जा सकता।",
+            "सीपीसी आदेश 39 के तहत भाई के खिलाफ तत्काल स्टे आर्डर (Injunction) प्राप्त किया जा सकता है।"
+        ]
+        next_steps = [
+            "रजिस्ट्री और राजस्व दस्तावेज सुरक्षित रखें।",
+            "अधिवक्ता के माध्यम से भाई को कानूनी नोटिस भेजें।",
+            "दीवानी अदालत में आदेश 39 सीपीसी के तहत स्टे याचिका दायर करें।"
+        ]
+        referral = "जिला विधिक सेवा प्राधिकरण (DLSA) | राष्ट्रीय विधिक हेल्पलाइन: 15100 | eCourts: https://ecourts.gov.in/"
+
+    # 10. Generic Statutory Document Match
     else:
         answer = (
             f"**आधिकारिक दस्तावेज़ '{doc_title}' (पृष्ठ {page}, अनुभाग: {section}) के आधार पर जानकारी:**\n\n"
@@ -331,7 +372,7 @@ def synthesize_hindi_legal_answer(query: str, primary_doc: Dict[str, Any], retri
         "safety_notice": DEFAULT_DISCLAIMER_HI
     }
 
-def synthesize_english_legal_answer(query: str, primary_doc: Dict[str, Any], retrieved_chunks: List[Dict[str, Any]]) -> Dict[str, Any]:
+def synthesize_english_legal_answer(query: str, primary_doc: Dict[str, Any], retrieved_chunks: List[Dict[str, Any]], topic: str = "General Legal Information") -> Dict[str, Any]:
     """
     Produce an articulate, evidence-grounded English explanation based strictly on the retrieved document.
     """
@@ -340,8 +381,63 @@ def synthesize_english_legal_answer(query: str, primary_doc: Dict[str, Any], ret
     page = primary_doc.get("page_number", 1)
     q_lower = query.lower()
 
-    # 1. Domestic Violence, Spousal Assault, Slapping, Cruelty (PWDVA & BNS)
-    if "Domestic Violence" in doc_title or any(w in q_lower for w in ["slap", "slapped", "husband", "beat", "beaten", "hit", "abuse", "cruelty", "498a", "dowry", "assault"]):
+    # 1. Senior Citizens & Protection Against Eviction (MWPSC Act 2007)
+    if topic == "Senior Citizens Protection & Maintenance" or "Senior Citizens" in doc_title or any(w in q_lower for w in ["68 year", "senior citizen", "elderly", "throw me out", "throw out", "old mother", "old father"]):
+        answer = (
+            "**Under the Maintenance and Welfare of Parents and Senior Citizens Act, 2007 (MWPSC Act), adult children or relatives have NO legal right to evict elderly parents:**\n\n"
+            "### 1. Revocation of Property Deeds & Eviction of Children (Section 23)\n"
+            "• Under Section 23 of the Act, if a senior citizen transferred or gifted property with the expectation of care and the children neglect or mistreat them, the **Maintenance Tribunal (presided over by the SDM) can declare the property transfer null and VOID**, restoring complete ownership to the parent.\n"
+            "• The Maintenance Tribunal possesses statutory powers to summarily evict abusive adult children from the senior citizen's residence.\n\n"
+            "### 2. Mandatory Monthly Maintenance (Sections 4 & 5)\n"
+            "• Children and legal heirs are statutorily obligated to maintain parents with food, healthcare, and monthly allowances.\n\n"
+            "### 3. 100% Free Legal Representation (Section 12(c))\n"
+            "• Under Section 12(c) of the Legal Services Authorities Act, 1987, **all women qualify for 100% free legal aid and a court advocate** with zero fees via the District Legal Services Authority (DLSA).\n\n"
+            "### 4. Helplines\n"
+            "• **Elderline 14567**: Dedicated 24/7 National Senior Citizen Helpline for field rescue and legal intervention.\n"
+            "• Emergency Police: **112**."
+        )
+        points = [
+            "Section 23 of MWPSC Act 2007 empowers tribunals to declare property gifts to children void and evict abusive children.",
+            "Children have no legal right to dispossess elderly parents from their residence.",
+            "All senior women qualify for 100% free legal representation under Section 12(c) of Legal Services Authorities Act, 1987."
+        ]
+        next_steps = [
+            "Dial Elderline 14567 immediately for senior citizen emergency intervention.",
+            "File an urgent application under Section 23 and Section 5 before your local Sub-Divisional Magistrate (SDM) / Maintenance Tribunal.",
+            "Visit the DLSA front office at the District Court or call 15100 for a free assigned advocate."
+        ]
+        referral = "National Senior Citizen Helpline (Elderline): 14567 | Police: 112 | NALSA Free Legal Aid: 15100"
+
+    # 2. Property Ownership, Dispossession & Injunction against Brother/Relative
+    elif topic == "Property Ownership & Civil Injunction Rights" or "Specific Relief" in doc_title or any(w in q_lower for w in ["owner", "withhold", "withold", "brother", "trespass", "dispossess", "possession", "grab"]):
+        answer = (
+            "**Under Indian law, a registered title owner cannot be unlawfully dispossessed or have property withheld by a sibling or relative without due process of law:**\n\n"
+            "### 1. Civil Injunction & Stay Order (Order 39 Rules 1 & 2 CPC)\n"
+            "• You can file a Civil Suit for Declaration of Title and Permanent Injunction before the Civil Judge / District Court.\n"
+            "• Under Order 39 Rules 1 & 2 of the Code of Civil Procedure, 1908 (CPC), the court can pass an urgent **interim Stay Order (Temporary Injunction)** restraining your brother from entering the property, interfering with possession, or attempting third-party sale.\n\n"
+            "### 2. Recovery of Possession (Sections 5 & 6, Specific Relief Act, 1963)\n"
+            "• Section 6 enables a lawful occupant to recover summary possession within 6 months if dispossessed by force, irrespective of title disputes.\n\n"
+            "### 3. Criminal Action under Bharatiya Nyaya Sanhita, 2023 (BNS)\n"
+            "• **Criminal Trespass (Section 329 BNS)**: Forcibly withholding or occupying another's property constitutes criminal trespass, actionable via police complaint.\n"
+            "• **Cheating (Section 318 BNS)**: Forging documents or attempting fraudulent mutation carries up to 7 years imprisonment.\n\n"
+            "### 4. 100% Free Legal Representation (Section 12)\n"
+            "• Eligible citizens and all women receive a state-funded panel lawyer through the District Legal Services Authority (DLSA) with waiver of court fees."
+        )
+        points = [
+            "A registered owner cannot be lawfully dispossessed without a formal court decree.",
+            "Order 39 Rules 1 & 2 CPC enables obtaining an immediate temporary injunction (Stay Order) against relatives.",
+            "Unlawful occupation constitutes criminal trespass under Section 329 BNS, and DLSA provides free legal counsel."
+        ]
+        next_steps = [
+            "Preserve registered Sale Deed, Revenue Records (Jamabandi/Khatauni), and property tax receipts.",
+            "Issue a formal Advocate's Legal Demand Notice to your brother via registered post.",
+            "File an Injunction Suit with an urgent Stay application under Order 39 CPC in District Court.",
+            "Approach the DLSA front office or dial 15100 for a free appointed advocate."
+        ]
+        referral = "eCourts Services: https://ecourts.gov.in/ | NALSA Free Legal Aid: 15100 | DLSA Front Office"
+
+    # 3. Domestic Violence, Spousal Assault, Slapping, Cruelty (PWDVA & BNS)
+    elif topic == "Domestic Violence & Women's Legal Protection" or ("Domestic Violence" in doc_title and any(w in q_lower for w in ["slap", "slapped", "husband", "beat", "beaten", "hit", "abuse", "cruelty", "498a", "dowry", "assault", "wife"])):
         answer = (
             "**Under Indian law, physical assault, slapping, or domestic cruelty by a husband or in-laws is a punishable statutory offense with immediate civil protections and state-funded legal aid:**\n\n"
             "### 1. Immediate Safety & Medical Evidence (First 24 Hours)\n"
@@ -461,7 +557,62 @@ def synthesize_english_legal_answer(query: str, primary_doc: Dict[str, Any], ret
         ]
         referral = "Ministry of Road Transport and Highways: https://morth.nic.in/ | e-Challan Portal: https://echallan.parivahan.gov.in/"
 
-    # 6. Default Grounded Match
+    # 6. Senior Citizens & Protection Against Eviction (MWPSC Act 2007)
+    elif "Senior Citizens" in doc_title or any(w in q_lower for w in ["68 year", "senior citizen", "elderly", "throw me out", "throw out", "kids", "old mother", "old father"]):
+        answer = (
+            "**Under the Maintenance and Welfare of Parents and Senior Citizens Act, 2007 (MWPSC Act), adult children or relatives have NO legal right to evict elderly parents:**\n\n"
+            "### 1. Revocation of Property Deeds & Eviction of Children (Section 23)\n"
+            "• Under Section 23 of the Act, if a senior citizen transferred or gifted property with the expectation of care and the children neglect or mistreat them, the **Maintenance Tribunal (presided over by the SDM) can declare the property transfer null and VOID**, restoring complete ownership to the parent.\n"
+            "• The Maintenance Tribunal possesses statutory powers to summarily evict abusive adult children from the senior citizen's residence.\n\n"
+            "### 2. Mandatory Monthly Maintenance (Sections 4 & 5)\n"
+            "• Children and legal heirs are statutorily obligated to maintain parents with food, healthcare, and monthly allowances.\n\n"
+            "### 3. 100% Free Legal Representation (Section 12(c))\n"
+            "• Under Section 12(c) of the Legal Services Authorities Act, 1987, **all women qualify for 100% free legal aid and a court advocate** with zero fees via the District Legal Services Authority (DLSA).\n\n"
+            "### 4. Helplines\n"
+            "• **Elderline 14567**: Dedicated 24/7 National Senior Citizen Helpline for field rescue and legal intervention.\n"
+            "• Emergency Police: **112**."
+        )
+        points = [
+            "Section 23 of MWPSC Act 2007 empowers tribunals to declare property gifts to children void and evict abusive children.",
+            "Children have no legal right to dispossess elderly parents from their residence.",
+            "All senior women qualify for 100% free legal representation under Section 12(c) of Legal Services Authorities Act, 1987."
+        ]
+        next_steps = [
+            "Dial Elderline 14567 immediately for senior citizen emergency intervention.",
+            "File an urgent application under Section 23 and Section 5 before your local Sub-Divisional Magistrate (SDM) / Maintenance Tribunal.",
+            "Visit the DLSA front office at the District Court or call 15100 for a free assigned advocate."
+        ]
+        referral = "National Senior Citizen Helpline (Elderline): 14567 | Police: 112 | NALSA Free Legal Aid: 15100"
+
+    # 7. Property Ownership, Dispossession & Injunction against Brother/Relative
+    elif "Specific Relief" in doc_title or any(w in q_lower for w in ["owner", "withhold", "withold", "brother", "trespass", "dispossess", "possession", "grab"]):
+        answer = (
+            "**Under Indian law, a registered title owner cannot be unlawfully dispossessed or have property withheld by a sibling or relative without due process of law:**\n\n"
+            "### 1. Civil Injunction & Stay Order (Order 39 Rules 1 & 2 CPC)\n"
+            "• You can file a Civil Suit for Declaration of Title and Permanent Injunction before the Civil Judge / District Court.\n"
+            "• Under Order 39 Rules 1 & 2 of the Code of Civil Procedure, 1908 (CPC), the court can pass an urgent **interim Stay Order (Temporary Injunction)** restraining your brother from entering the property, interfering with possession, or attempting third-party sale.\n\n"
+            "### 2. Recovery of Possession (Sections 5 & 6, Specific Relief Act, 1963)\n"
+            "• Section 6 enables a lawful occupant to recover summary possession within 6 months if dispossessed by force, irrespective of title disputes.\n\n"
+            "### 3. Criminal Action under Bharatiya Nyaya Sanhita, 2023 (BNS)\n"
+            "• **Criminal Trespass (Section 329 BNS)**: Forcibly withholding or occupying another's property constitutes criminal trespass, actionable via police complaint.\n"
+            "• **Cheating (Section 318 BNS)**: Forging documents or attempting fraudulent mutation carries up to 7 years imprisonment.\n\n"
+            "### 4. 100% Free Legal Representation (Section 12)\n"
+            "• Eligible citizens and all women receive a state-funded panel lawyer through the District Legal Services Authority (DLSA) with waiver of court fees."
+        )
+        points = [
+            "A registered owner cannot be lawfully dispossessed without a formal court decree.",
+            "Order 39 Rules 1 & 2 CPC enables obtaining an immediate temporary injunction (Stay Order) against relatives.",
+            "Unlawful occupation constitutes criminal trespass under Section 329 BNS, and DLSA provides free legal counsel."
+        ]
+        next_steps = [
+            "Preserve registered Sale Deed, Revenue Records (Jamabandi/Khatauni), and property tax receipts.",
+            "Issue a formal Advocate's Legal Demand Notice to your brother via registered post.",
+            "File an Injunction Suit with an urgent Stay application under Order 39 CPC in District Court.",
+            "Approach the DLSA front office or dial 15100 for a free appointed advocate."
+        ]
+        referral = "eCourts Services: https://ecourts.gov.in/ | NALSA Free Legal Aid: 15100 | DLSA Front Office"
+
+    # 8. Default Grounded Match
     else:
         answer = (
             f"[Verified Grounded RAG — Local Engine] Grounded in official document '{doc_title}' "
@@ -532,7 +683,7 @@ def generate_grounded_local_response(
             safety_notice=synthesis["safety_notice"]
         )
     else:
-        synthesis = synthesize_english_legal_answer(query, primary_doc, retrieved_chunks)
+        synthesis = synthesize_english_legal_answer(query, primary_doc, retrieved_chunks, topic=topic)
         return StructuredAIResponse(
             answer=synthesis["answer"],
             language="en",
